@@ -1,0 +1,8 @@
+@use 'abstracts' as *;
+
+.container {
+    width: 100%;
+    min-width: 20rem;
+    margin: 0 auto;    
+    display:flex;
+};
