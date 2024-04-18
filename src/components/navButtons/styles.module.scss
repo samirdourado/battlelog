@@ -1,0 +1,44 @@
+@use "abstracts" as *;
+
+.nav__container {
+    @media (max-width: 750px) {
+        display: none;        
+    };
+    @media (min-width: 751px) {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    };
+};
+
+.nav__container > a {
+    @include nav-styles;
+    color: $color-brand-3;
+};
+
+.nav__container > a:hover {    
+    color: $color-brand-1;
+};
+
+.hamburguer__btn__open {
+    @media (max-width: 750px) {        
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+    }
+    @media (min-width: 751px) {
+        display: none;
+    };
+};
+
+.hamburguer__btn__open > :nth-child(1) {
+    color: $color-brand-1;
+    width: 100%;
+    height: 100%;
+}
+

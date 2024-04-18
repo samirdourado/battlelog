@@ -1,16 +1,27 @@
 import Link from "next/link"
+import styles from "./styles.module.scss"
+import { MdOutlineMenuOpen } from "react-icons/md"
+import { useNavContext } from "@/contexts/navContext"
 
 const MenuHamburguer = () => {
+
+    const { setMobileMenu }: any = useNavContext()
+
     return (
-        <div>
-            <div>
-                <button>X</button>
-                <nav>
-                    <Link href={'/'}>Axies</Link>
-                    <Link href={'/'}>Leaderboard</Link>
-                    <Link href={'/'}>Guilds</Link>
-                    <Link href={'/'}>Runes</Link>
-                    <Link href={'/'}>Ranking</Link>
+        <div className={ styles.backdrop }>
+            <div className={ styles.menu__container }>
+                <button 
+                    className={ styles.hamburguer__btn__close }
+                    onClick={ () => setMobileMenu(false) }
+                >
+                    <MdOutlineMenuOpen />
+                </button>
+                <nav className={ styles.nav__container__mobile }>
+                    <Link href={ '#axies' }>Axies</Link>
+                    <Link href={ '#leaderbords' }>Leaderboards</Link>
+                    <Link href={ '#guilds' }>Guilds</Link>
+                    <Link href={ '#runes' }>Runes</Link>
+                    <Link href={ '#runes' }>Ranking</Link>
                 </nav>
             </div>
         </div>

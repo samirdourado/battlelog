@@ -1,16 +1,16 @@
 'use client'
-import api from "@/services/api";
-import { ReactNode, createContext, useContext, useState, } from "react";
+import api from "@/services/api"
+import { ReactNode, createContext, useContext, useState, } from "react"
 
 interface Props {
-    children: ReactNode;
+    children: ReactNode
 }
 
 interface leaderBoardProviderData {
-    leaderBoard: undefined;
-    setLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>;
+    leaderBoard: undefined
+    setLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>
     fullLeaderBoard: undefined;
-    setFullLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>;
+    setFullLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>
 }
 
 const LeaderBoardContext = createContext<leaderBoardProviderData>({} as leaderBoardProviderData)
@@ -19,8 +19,8 @@ export const  LeaderBoardProvider = ({children}: Props) => {
 
     const apiKey = process.env.NEXT_PUBLIC_KEY_API
 
-    const [fullLeaderBoard, setFullLeaderBoard] = useState();
-    const [leaderBoard, setLeaderBoard] = useState();
+    const [fullLeaderBoard, setFullLeaderBoard] = useState()
+    const [leaderBoard, setLeaderBoard] = useState()
     
     const getFullLeaderBoard = async () => {
         try {
@@ -30,7 +30,7 @@ export const  LeaderBoardProvider = ({children}: Props) => {
                     'Content-Type': 'application/json',
                     'X-API-Key': apiKey
                   }
-            });
+            })
             
             setFullLeaderBoard(response.data)
             setLeaderBoard(response.data._items)
@@ -48,4 +48,4 @@ export const  LeaderBoardProvider = ({children}: Props) => {
     )
 }
 
-export const useLeaderBoard = () => useContext(LeaderBoardContext);
+export const useLeaderBoard = () => useContext(LeaderBoardContext)

@@ -1,14 +1,15 @@
 import Image from "next/image"
 import NavButtons from "../navButtons"
+import styles from "./styles.module.scss"
 
 const Header = () => {
     return (
-        <header>
+        <header className={ styles.container }>
         <Image
-          src={'/logo.png'}
+          src={ '/logo.png' }
           alt="Battle Log Logo"
-          width={267}
-          height={90}
+          width={ 267 }
+          height={ 90 }
           priority
         />
         <NavButtons/>
