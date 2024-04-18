@@ -1,0 +1,21 @@
+$color-brand-1: #fa2fb5;
+$color-brand-2: #ffc23c;
+$color-brand-3: #100720;
+$color-transparent: #100720;
+$color-gray-1: #71819d;
+$color-green-1: #008d60;
+$color-blue-1: #0d357b;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray-1: #fafafa;
+
+$text-font-stack: "Inter, Roboto, Arial, sans-serif";
+
+@mixin text-style-font-0() {
+	font-size: 16px;
+	font-family: "Inter";
+	font-weight: 300;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+};
