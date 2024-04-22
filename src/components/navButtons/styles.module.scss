@@ -2,12 +2,13 @@
 
 .nav__container {
     @media (max-width: 750px) {
-        display: none;        
+        display: none;
     };
     @media (min-width: 751px) {
         display: flex;
         align-items: center;
         gap: 1rem;
+        margin-right: 20px;
     };
 };
 
