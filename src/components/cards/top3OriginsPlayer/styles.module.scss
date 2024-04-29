@@ -1,15 +1,17 @@
 @use 'abstracts' as *;
 
-.card {    
+.card__container {    
     width: 100%;
     min-width: 16.875rem;
     max-width: 16.875rem;
     display:flex;
-    flex-direction: column;    
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
-    background-color: $color-gray-2;
+    background-color: $color-gray-1;
     border-radius: 8px;
-    list-style: none;
+    padding: 10px;
+    cursor: pointer;
     
     
     // @media (max-width: 750px) {
@@ -20,9 +22,38 @@
     // };
 };
 
-.card__header {
+.card__top {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: cyan;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.card__line {
+    width: 100%;
+    border: solid 1px $color-brand-2;
+}
+
+.card__bottom {
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.card__bottom > li{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;  
+}
+
+.card__bottom > li > section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
