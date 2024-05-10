@@ -7,6 +7,8 @@
     flex-direction: column;
     gap: 10px;
     background-color: $color-white;
+    justify-content: center;
+
 }
 
 .cardsHolder {    
@@ -18,15 +20,32 @@
     
     @media (max-width: 750px) {
         flex-direction: row;
+        overflow-x: scroll;
+
+        ::-webkit-scrollbar {
+            background-color: $color-brand-2;
+            height: 3px;
+            border-radius: 5px;            
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: $color-brand-1;            
+            height: 3px;
+            border-radius: 5px;
+        }
     };
     @media (min-width: 751px) {
-        flex-direction: column;
+        flex-direction: column;        
+        align-items: center;
     };
 };
 
 .container > h2, .container > a {
     color: $color-brand-1;
     margin: 0 auto;
+}
+
+.container > a {
+    @include cardTop3Titles()
 }
 
 .container__top3 {
