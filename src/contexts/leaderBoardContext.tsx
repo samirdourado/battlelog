@@ -6,11 +6,12 @@ interface Props {
     children: ReactNode
 }
 
-interface leaderBoardProviderData {
-    leaderBoard: undefined
-    setLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>
-    fullLeaderBoard: undefined;
-    setFullLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>
+interface leaderBoardProviderData {    
+    axieOriginsTop3LeaderBoard: never[];
+    setAxieOriginsTop3LeaderBoard: React.Dispatch<React.SetStateAction<never[]>>;
+    
+
+    getFullLeaderBoard: () => Promise<void>
 }
 
 const LeaderBoardContext = createContext<leaderBoardProviderData>({} as leaderBoardProviderData)
@@ -18,32 +19,44 @@ const LeaderBoardContext = createContext<leaderBoardProviderData>({} as leaderBo
 export const  LeaderBoardProvider = ({children}: Props) => {
 
     const apiKey = process.env.NEXT_PUBLIC_KEY_API
-
-    const [fullLeaderBoard, setFullLeaderBoard] = useState()
-    const [leaderBoard, setLeaderBoard] = useState()
+    
+    const [axieOriginsTop3LeaderBoard, setAxieOriginsTop3LeaderBoard] = useState([]);
+    const [top3AxiePlayers, setTop3AxiePlayers] = useState(false);
     
     const getFullLeaderBoard = async () => {
-        try {
+        try {            
+            if (!top3AxiePlayers) {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': apiKey
+                      }
+                };
+    
+                const response = await api.get('origins/v2/leaderboards', config);
+                
+                getTop3leaderBoardPlayes(response.data._items);
+                setTop3AxiePlayers(true);
+            };
 
-            const response = await api.get('origins/v2/leaderboards', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-Key': apiKey
-                  }
-            })
-            
-            setFullLeaderBoard(response.data)
-            setLeaderBoard(response.data._items)
 
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            setTop3AxiePlayers(false);
         }
-    }
+    };
+    getFullLeaderBoard()
+
+    const getTop3leaderBoardPlayes = async (data: any) => {
+        const players = await data.slice(0, 3)        
+        setAxieOriginsTop3LeaderBoard(players)
+    };    
+    
 
     return (
         <LeaderBoardContext.Provider value={{ 
-            fullLeaderBoard, setFullLeaderBoard,
-            leaderBoard, setLeaderBoard,
+            axieOriginsTop3LeaderBoard, setAxieOriginsTop3LeaderBoard,
+            getFullLeaderBoard,
          }}>{children}</LeaderBoardContext.Provider>
     )
 }

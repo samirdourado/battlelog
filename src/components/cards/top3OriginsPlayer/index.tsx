@@ -1,257 +1,58 @@
 import Image from "next/image"
 import styles from "./styles.module.scss"
+import { useLeaderBoard } from "@/contexts/leaderBoardContext"
 
 const Top3OriginsPlayerCard = () => {
 
+    const { getFullLeaderBoard, axieOriginsTop3LeaderBoard } = useLeaderBoard();
+    
+
     return (        
         <>
-        <li className={styles.card__container}>
+            { axieOriginsTop3LeaderBoard ? (
+                axieOriginsTop3LeaderBoard.map((data: any) => (
+                    <li className={styles.card__container} key={data.userID}>
+                        <section className={styles.card__top}>
+                            <section className={styles.card__top__left}>
+                                <p>{data.topRank}</p>
+                                <p>{data.name}</p>
+                            </section>
+                            <section className={styles.card__top__right}>
+                                <p>{data.vstar}</p>
+                                <p>Clã Name</p>
+                            </section>
+                        </section>
 
-<section className={styles.card__top}>
-    <section className={styles.card__top__left}>
-        <p>1</p>
-        <p>Player Name</p>
-    </section>
-    <section className={styles.card__top__right}>
-        <p>2231</p>
-        <p>Clã Name</p>
-    </section>
-</section>
-
-<hr className={styles.card__line}></hr>
-    
-<ul className={styles.card__bottom}>
-    <li>
-        <Image
-            src={"/axie-provisory.png"}
-            alt={"Axie Name"}
-            width={50}
-            height={40}
-        />
-        <section>
-            <Image
-                src={"/rune-provisory.png"}
-                alt={"Axie Parts name"}
-                width={18}
-                height={18}
-            />
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-        </section>
-    </li>
-    <li>
-        <Image
-            src={"/axie-provisory.png"}
-            alt={"Axie Name"}
-            width={50}
-            height={40}
-        />
-        <section>
-            <Image
-                src={"/rune-provisory.png"}
-                alt={"Axie Parts name"}
-                width={18}
-                height={18}
-            />
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-        </section>
-    </li>
-    <li>
-        <Image
-            src={"/axie-provisory.png"}
-            alt={"Axie Name"}
-            width={50}
-            height={40}
-        />
-        <section>
-            <Image
-                src={"/rune-provisory.png"}
-                alt={"Axie Parts name"}
-                width={18}
-                height={18}
-            />
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-            <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-        </section>
-    </li>
-</ul>
-
-</li>
-
-<li className={styles.card__container}>
-
-            <section className={styles.card__top}>
-                <section className={styles.card__top__left}>
-                    <p>1</p>
-                    <p>Player Name</p>
-                </section>
-                <section className={styles.card__top__right}>
-                    <p>2231</p>
-                    <p>Clã Name</p>
-                </section>
-            </section>
-
-            <hr className={styles.card__line}></hr>
-                
-            <ul className={styles.card__bottom}>
-                <li>
-                    <Image
-                        src={"/axie-provisory.png"}
-                        alt={"Axie Name"}
-                        width={50}
-                        height={40}
-                    />
-                    <section>
-                        <Image
-                            src={"/rune-provisory.png"}
-                            alt={"Axie Parts name"}
-                            width={18}
-                            height={18}
-                        />
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                    </section>
-                </li>
-                <li>
-                    <Image
-                        src={"/axie-provisory.png"}
-                        alt={"Axie Name"}
-                        width={50}
-                        height={40}
-                    />
-                    <section>
-                        <Image
-                            src={"/rune-provisory.png"}
-                            alt={"Axie Parts name"}
-                            width={18}
-                            height={18}
-                        />
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                    </section>
-                </li>
-                <li>
-                    <Image
-                        src={"/axie-provisory.png"}
-                        alt={"Axie Name"}
-                        width={50}
-                        height={40}
-                    />
-                    <section>
-                        <Image
-                            src={"/rune-provisory.png"}
-                            alt={"Axie Parts name"}
-                            width={18}
-                            height={18}
-                        />
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                    </section>
-                </li>
-            </ul>
-
-        </li>
-        <li className={styles.card__container}>
-
-            <section className={styles.card__top}>
-                <section className={styles.card__top__left}>
-                    <p>1</p>
-                    <p>Player Name</p>
-                </section>
-                <section className={styles.card__top__right}>
-                    <p>2231</p>
-                    <p>Clã Name</p>
-                </section>
-            </section>
-
-            <hr className={styles.card__line}></hr>
-                
-            <ul className={styles.card__bottom}>
-                <li>
-                    <Image
-                        src={"/axie-provisory.png"}
-                        alt={"Axie Name"}
-                        width={50}
-                        height={40}
-                    />
-                    <section>
-                        <Image
-                            src={"/rune-provisory.png"}
-                            alt={"Axie Parts name"}
-                            width={18}
-                            height={18}
-                        />
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                    </section>
-                </li>
-                <li>
-                    <Image
-                        src={"/axie-provisory.png"}
-                        alt={"Axie Name"}
-                        width={50}
-                        height={40}
-                    />
-                    <section>
-                        <Image
-                            src={"/rune-provisory.png"}
-                            alt={"Axie Parts name"}
-                            width={18}
-                            height={18}
-                        />
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                    </section>
-                </li>
-                <li>
-                    <Image
-                        src={"/axie-provisory.png"}
-                        alt={"Axie Name"}
-                        width={50}
-                        height={40}
-                    />
-                    <section>
-                        <Image
-                            src={"/rune-provisory.png"}
-                            alt={"Axie Parts name"}
-                            width={18}
-                            height={18}
-                        />
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                        <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
-                    </section>
-                </li>
-            </ul>
-
-        </li>
+                        <hr className={styles.card__line}></hr>
+                            
+                        <ul className={styles.card__bottom}>
+                            <li>
+                                <Image
+                                    src={"/axie-provisory.png"}
+                                    alt={"Axie Name"}
+                                    width={50}
+                                    height={40}
+                                />
+                                <section>
+                                    <Image
+                                        src={"/rune-provisory.png"}
+                                        alt={"Axie Parts name"}
+                                        width={18}
+                                        height={18}
+                                    />
+                                    <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
+                                    <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
+                                    <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
+                                    <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
+                                    <Image src={"/rune-provisory.png"} alt={"Axie Parts name"} width={18} height={18}/>
+                                </section>
+                            </li>
+                        </ul>
+                    </li>
+                ))
+            ) : (
+                <p>Loading</p>
+            )}
         </>
     )
 }
