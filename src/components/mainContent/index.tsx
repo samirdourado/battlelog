@@ -1,7 +1,7 @@
 import Top3OriginsPlayersCardsHolder from "../cardsHolder/top3OriginsPlayers"
 import styles from "./styles.module.scss"
 
-const Content = () => {
+const MainContent = () => {
     return (
         <main className={styles.container}>
             <Top3OriginsPlayersCardsHolder/>
@@ -9,4 +9,4 @@ const Content = () => {
     )
 }
 
-export default Content
+export default MainContent
