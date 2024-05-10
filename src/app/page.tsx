@@ -1,8 +1,11 @@
 "use client"
 import Header from "@/components/header"
 import styles from "./styles.module.scss"
+import "../scss/_reset.scss"
 import MenuHamburguer from "@/components/menuHamburguer"
 import { useNavContext } from "@/contexts/navContext"
+import Hero from "@/components/hero"
+import MainContent from "@/components/mainContent"
 
 export default function Home() {
 
@@ -11,8 +14,10 @@ export default function Home() {
   return (
     <section>
       <main className={ styles.container }>
-      <Header/>
-    </main>
+        <Header/>
+        <Hero/>
+        <MainContent/>
+      </main>
       { mobileMenu && <MenuHamburguer/> }
     </section>
   )

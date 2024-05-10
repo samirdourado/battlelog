@@ -1,0 +1,18 @@
+@use 'abstracts' as *;
+
+.container {
+    width: 100%;
+    min-width: 320px;
+    margin: 1.25rem auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-white;
+    
+    @media (max-width: 750px) {
+        height: 9.375rem;
+    };
+    @media (min-width: 751px) {
+        height: 170px;
+    };
+};
