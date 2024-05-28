@@ -4,12 +4,12 @@ import { useLeaderBoard } from "@/contexts/leaderBoardContext"
 
 const Top3OriginsPlayerCard = () => {
 
-    const { getFullLeaderBoard, axieOriginsTop3LeaderBoard } = useLeaderBoard();
+    const { getFullLeaderBoard, axieOriginsTop3LeaderBoard, logLeaderboardSeason } = useLeaderBoard();
     
 
     return (        
         <>
-            { axieOriginsTop3LeaderBoard ? (
+            { axieOriginsTop3LeaderBoard.length ? (
                 axieOriginsTop3LeaderBoard.map((data: any) => (
                     <li className={styles.card__container} key={data.userID}>
                         <section className={styles.card__top}>
