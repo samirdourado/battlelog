@@ -73,7 +73,7 @@ export const  LeaderBoardProvider = ({children}: Props) => {
 
     const getBattleLogsByUserID = async (userId: string[]) => {
 
-        console.log(userId[0])
+        // console.log(userId[0])
 
         try {
             const config = {
@@ -84,9 +84,9 @@ export const  LeaderBoardProvider = ({children}: Props) => {
             };            
 
             const response = await api.get(`origins/v2/community/users/${userId[0]}/battle-logs`, config)
-            console.log(response.data._items);
+            // console.log(response.data._items);
             setLogLeaderBoardSeason(response.data._items);
-            console.log(logLeaderboardSeason)
+            // console.log(logLeaderboardSeason)
 
         } catch (error) {
             console.log(error);

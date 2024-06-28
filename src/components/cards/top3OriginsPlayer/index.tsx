@@ -6,6 +6,7 @@ const Top3OriginsPlayerCard = () => {
 
     const { getFullLeaderBoard, axieOriginsTop3LeaderBoard, logLeaderboardSeason } = useLeaderBoard();
     
+    console.log(logLeaderboardSeason)
 
     return (        
         <>

@@ -6,7 +6,7 @@ const Top3OriginsPlayersCardsHolder = () => {
 
     return (
         <section className={styles.container}>
-            <h2>Top 3 Origins Players</h2>
+            <h2>Top Origins Players</h2>
             <ul className={styles.cardsHolder}>
                 <Top3OriginsPlayerCard/>
             </ul>
