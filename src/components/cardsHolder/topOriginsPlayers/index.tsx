@@ -2,10 +2,10 @@ import Top3OriginsPlayerCard from "@/components/cards/topOriginsPlayer"
 import styles from "./styles.module.scss"
 import Link from "next/link"
 
-const Top3OriginsPlayersCardsHolder = () => {
+const TopOriginsPlayersCardsHolder = () => {
 
     return (
-        <section className={styles.container}>           
+        <section className={styles.container} id="leaderbords">           
             <h2>Top Origins Players</h2>
             <ul className={styles.cardsHolder}>
                 <Top3OriginsPlayerCard/>
@@ -20,4 +20,4 @@ const Top3OriginsPlayersCardsHolder = () => {
 
 }
 
-export default Top3OriginsPlayersCardsHolder
+export default TopOriginsPlayersCardsHolder
