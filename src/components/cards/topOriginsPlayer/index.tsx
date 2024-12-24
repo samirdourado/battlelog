@@ -4,55 +4,50 @@ import { useLeaderBoard } from "@/contexts/leaderBoardContext";
 
 const Top3OriginsPlayerCard = () => {
   const {
-    getFullLeaderBoard,
+    listLeaderboard,
     leaderboard,
-    axieOriginsTop3LeaderBoard,
     logLeaderboardSeason,
   } = useLeaderBoard();
-  
+
+
   const { _items, _metadata } = leaderboard as unknown as {
     _items: any[];
     _metadata: any;
   };
 
+  console.log(_items)
+
   return (
     <>
       {_items ? (
-        _items.map((data: any) => (
-          <li className={styles.card__container} key={data.userID}>
-            <section className={styles.card__top}>
-              <section className={styles.card__top__left}>
-                <p>{data.topRank}</p>
-                <p>{data.name}</p>
+        _items.map((data: any) => {
+          const [avatar1, avatar2] = data.avatar.split(';');
+          return (
+            <li className={styles.card__container} key={data.userID}>
+              <section className={styles.card__lef}>
+                <p className={styles.cardTitle}>{data.topRank}</p>
               </section>
-              <section className={styles.card__top__right}>
-                <p>{data.vstar}</p>
-                <p>Clã Name</p>
+
+              <section className={styles.card__right}>
+                <section className={styles.card__body}>
+                  <p className={styles.cardTitle}>{data.name}</p>
+                  <p className={styles.cardSubTitle}>{data.rank}</p>
+                  <p className={styles.cardSubTitle}>{data.vstar}</p>
+                </section>
+                <figure className={styles.card__figure}>
+                  <img className={styles.avatar} src={`https://storage.googleapis.com/origin-production/assets/avatar/${avatar1}.png`} alt="Avatar 1" />
+                  <img className={styles.border} src={`https://storage.googleapis.com/origin-production/assets/border/${avatar2}.png`} alt="Avatar 2" />
+                </figure>
               </section>
-            </section>
-
-            <hr className={styles.card__line}></hr>
-
-            <ul className={styles.card__bottom}>
-              <li>
-                <p>{data.gameMode}</p>
-              </li>
-              <li>
-                <Image
-                  src={"/axie-provisory.png"}
-                  alt={"Axie Name"}
-                  width={50}
-                  height={40}
-                />
-              </li>
-            </ul>
-          </li>
-        ))
+            </li>
+          );
+        })
       ) : (
         <p>Loading</p>
       )}
     </>
   );
+
 };
 
 export default Top3OriginsPlayerCard;

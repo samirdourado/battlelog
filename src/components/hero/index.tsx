@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <section className={styles.container}>
             <Image
-                src="/axie-infinity-origins-logo.png"
+                src="/origins_assets/origins_logo.png"
                 alt="Axie Infinity logo"
                 width={138}
                 height={102}

@@ -46,7 +46,7 @@
 }
 
 .container > a {
-    @include cardTop3Titles()
+    @include cardTitle()
 }
 
 .container__top3 {

@@ -17,8 +17,8 @@ interface leaderBoardProviderData {
     setLogLeaderBoardSeason: React.Dispatch<React.SetStateAction<never[]>>;
     
 
-    getFullLeaderBoard: () => Promise<void>
-    getBattleLogsByUserID: (userId: string[]) => Promise<void>
+    listLeaderboard: () => Promise<void>
+    getLeaderboardBattleLogs: (userId: string[]) => Promise<void>
     logLeaderBoardSeason1k: (data: any) => Promise<void>
 }
 
@@ -32,9 +32,9 @@ export const  LeaderBoardProvider = ({children}: Props) => {
     const [top1kAxiePlayers, setTop1kAxiePlayers] = useState(false);
     const [axieOriginsTop3LeaderBoard, setAxieOriginsTop3LeaderBoard] = useState([]);    
     const [logLeaderboardSeason, setLogLeaderBoardSeason] = useState([]);
-    const [top3AxiePlayers, setTop3AxiePlayers] = useState(false);
     
-    const getFullLeaderBoard = async () => {
+    
+    const listLeaderboard = async () => {
         try {            
             if (!top1kAxiePlayers) {
                 
@@ -45,9 +45,10 @@ export const  LeaderBoardProvider = ({children}: Props) => {
                       }
                 };
     
-                const response = await api.get('origins/v2/leaderboards', config);
+                const response = await api.get('origins/v2/leaderboards', config);                
                 
                 setLeaderboard(response.data)
+                // getLeaderboardBattleLogs(usersStrings)
                 setTop1kAxiePlayers(true);
             };
 
@@ -56,12 +57,42 @@ export const  LeaderBoardProvider = ({children}: Props) => {
             setTop1kAxiePlayers(false);
         }
     };
-    getFullLeaderBoard()
+    listLeaderboard()
 
-    const getTop3leaderBoardPlayes = async (data: any) => {
-        const players = await data.slice(0, 3)        
-        setAxieOriginsTop3LeaderBoard(players)
+    const getLeaderboardBattleLogs = async (userId: string[]) => {
+        const config = {
+            headers: {
+                'Accept': 'application/json',
+                'X-API-Key': apiKey
+            }
+        };
+
+        const battleLogs: any[] = []
+        
+        try {
+            // userId.forEach(async (element: any) => {
+            //     const response = await api.get(`origins/v2/community/users/${element}/battle-logs`, config)
+            //     battleLogs.push(response.data._items)
+            // })
+
+            // console.log(battleLogs)
+
+            
+            // const response = await api.get(`origins/v2/community/users/${userId}/battle-logs`, config)
+            // console.log(response.data._items);
+            // return response.data._items;
+            // setLogLeaderBoardSeason(response.data._items);
+
+        } catch (error) {
+            console.log(error);
+        }
     };
+
+    
+
+    //     const players = await data.slice(0, 3)        
+    //     setAxieOriginsTop3LeaderBoard(players)
+    // };
 
     const logLeaderBoardSeason1k = async (data: any) => {
         // const players = await data.slice(0, 50)
@@ -73,41 +104,18 @@ export const  LeaderBoardProvider = ({children}: Props) => {
         //     usersIds.push(data.userID)
         // )
 
-        // getBattleLogsByUserID(usersIds) //inutilizei esta função por hora, mas ela funciona
+        // getLeaderboardBattleLogs(usersIds) //inutilizei esta função por hora, mas ela funciona
         
     };
 
-    const getBattleLogsByUserID = async (userId: string[]) => {
 
-        // // console.log(userId[0])
-
-        // try {
-        //     const config = {
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'X-API-Key': apiKey
-        //         }
-        //     };            
-
-        //     const response = await api.get(`origins/v2/community/users/${userId[0]}/battle-logs`, config)
-        //     // console.log(response.data._items); // A PARTIR DAQUI TENHO AS INFORMAÇÕES
-        //     // console.log(response.data._items); // A PARTIR DAQUI TENHO AS INFORMAÇÕES
-
-            
-        //     setLogLeaderBoardSeason(response.data._items);
-        //     // console.log(logLeaderboardSeason)
-
-        // } catch (error) {
-        //     console.log(error);
-        // }
-    };
 
     return (
         <LeaderBoardContext.Provider value={{ 
             leaderboard, setLeaderboard,
             axieOriginsTop3LeaderBoard, setAxieOriginsTop3LeaderBoard,
             logLeaderboardSeason, setLogLeaderBoardSeason,
-            getFullLeaderBoard, getBattleLogsByUserID, logLeaderBoardSeason1k,
+            listLeaderboard, getLeaderboardBattleLogs, logLeaderBoardSeason1k,
          }}>
             {children}
          </LeaderBoardContext.Provider>
