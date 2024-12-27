@@ -1,11 +1,12 @@
-import Top3OriginsPlayersCardsHolder from "../cardsHolder/topOriginsPlayers"
+
+import LeaderboardOriginsPlayersCardsHolder from "../cardsHolder/leaderboardOriginsPlayersCardsHolder"
 import styles from "./styles.module.scss"
 
 const MainContent = () => {
     return (
         <main className={styles.container}>
             <section>
-                <Top3OriginsPlayersCardsHolder/>
+                <LeaderboardOriginsPlayersCardsHolder/>
             </section>
         </main>
     )

@@ -41,43 +41,30 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    // -webkit-box-align: center;
-    // -webkit-box-pack: center;
 }
-
-// .card__figure {
-//     display: flex;
-//     flex-direction: column;
-//     background-image: url(https://storage.googleapis.com/origin-production/assets/border/fluffy_hooves.png);
-//     background-size: cover;
-//     background-position: center center;
-//     width: 100%;
-//     height: 100%;
-//     position: relative;
-//     z-index: 2;
-// }
 
 .card__figure {
     position: relative;
-    // width: 160px;
-    max-height: 150px;  // Limite de altura para a figure
+    height: 120px;
+    max-height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: aquamarine;
+    padding: 5px;
+    
   }
   
   .avatar {
     max-height: 100px;
-    width: auto;
+    width: 80px;
     display: block;
   }
   
   .border {    
     position: absolute;
-    top: 0;
-    left: 0;
+    // top: 0;
+    // left: 0;
     max-height: 100px;  
-    width: auto;
-    z-index: 3;  // Sobrepõe o avatar
+    width: 100px;
+    // z-index: 1;
   }

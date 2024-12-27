@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const api = axios.create({
+const apiOrigins = axios.create({
     baseURL: 'https://api-gateway.skymavis.com/',
     timeout: 5000
 })
 
-export default api;
+export default apiOrigins;

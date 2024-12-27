@@ -10,7 +10,7 @@ const NavButtons = () => {
     return (
         <>
             <nav className={ styles.nav__container }>                
-                <Link href={ '#leaderbords' }>Leaderboards</Link>                
+                <Link href={ '#leaderboards' }>Leaderboards</Link>                
             </nav>
             <button 
                 className={ styles.hamburguer__btn__open }

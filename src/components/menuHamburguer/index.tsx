@@ -17,7 +17,7 @@ const MenuHamburguer = () => {
                     <MdOutlineMenuOpen />
                 </button>
                 <nav className={ styles.nav__container__mobile }>                    
-                    <Link href={ '#leaderbords' }>Leaderboards</Link>                    
+                    <Link href={ '#leaderboards' } onClick={ () => setMobileMenu(false) }>Leaderboards</Link>                    
                 </nav>
             </div>
         </div>
