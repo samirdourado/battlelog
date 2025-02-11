@@ -23,7 +23,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center    
+    align-items: center;
+    
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start
+    }
 }
 
 .cardTitle {
@@ -32,6 +39,12 @@
 
 .cardSubTitle {
     @include cardSubTitle;
+}
+
+.vstar {
+    background-color: $color-brand-2;
+    padding: 8px;
+    border-radius: 8px;
 }
 
 .card__figure {
@@ -62,9 +75,6 @@
   
   .border {    
     position: absolute;
-    // top: 0;
-    // left: 0;
     max-height: 100px;  
     width: 100px;
-    // z-index: 1;
   }

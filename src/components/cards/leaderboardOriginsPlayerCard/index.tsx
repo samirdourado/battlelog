@@ -28,10 +28,10 @@ const LeaderboardOriginsPlayerCard = () => {
                 <p className={styles.cardTitle}>{data.topRank}</p>
               </section>
               <section className={styles.card__right}>
-                <section className={styles.card__body}>
+                <section className={styles.card__right__body}>
                   <p className={styles.cardTitle}>{data.name}</p>
                   <p className={styles.cardSubTitle}>{data.rank}</p>
-                  <p className={styles.cardSubTitle}>{data.vstar}</p>
+                  <p className={`${styles.cardSubTitle} ${styles.vstar}`}>{data.vstar}</p>
                 </section>
                 <figure className={styles.card__figure}>
                   {avatar ? (
