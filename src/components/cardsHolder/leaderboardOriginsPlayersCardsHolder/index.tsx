@@ -4,6 +4,7 @@ import Link from "next/link"
 import LeaderboardOriginsPlayerCard from "@/components/cards/leaderboardOriginsPlayerCard"
 
 const LeaderboardOriginsPlayersCardsHolder = () => {
+    
 
     return (
         <section className={styles.container} id="leaderboards">           
