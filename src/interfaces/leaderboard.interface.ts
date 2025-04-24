@@ -1,10 +1,10 @@
 export interface LeaderboardInterface {    
-    _etag: string;
-    _items: Array<LeaderboarUserInterface>,
+    _etag: string,
+    _items: Array<LeaderboarItemsInterface>,
     _metadata: Array<LeaderBoardMetaDataInterface>
 }
 
-export interface LeaderboarUserInterface {
+export interface LeaderboarItemsInterface {
     userID: string,
     name: string,
     rank: string,

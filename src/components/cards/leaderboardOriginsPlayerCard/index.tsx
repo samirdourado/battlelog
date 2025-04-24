@@ -3,20 +3,18 @@ import styles from "./styles.module.scss";
 import { useLeaderBoard } from "@/contexts/leaderBoardContext";
 import noImage from "/public/origins_assets/noImage.png"
 import noBorder from "/public/origins_assets/noBorder.png"
-import { LeaderBoardMetaDataInterface, LeaderboarUserInterface } from "@/interfaces/leaderboard.interface";
+import { LeaderBoardMetaDataInterface, LeaderboarItemsInterface } from "@/interfaces/leaderboard.interface";
 
 const LeaderboardOriginsPlayerCard = () => {
   const { leaderboard, } = useLeaderBoard();
-
-  const { _items, _metadata } = leaderboard as unknown as {
-    _items: LeaderboarUserInterface[];
-    _metadata: LeaderBoardMetaDataInterface[];
+  const { _items } = leaderboard as unknown as {
+    _items: LeaderboarItemsInterface[];
   };
 
   return (
     <>
       {_items ? (
-        _items.map((data: LeaderboarUserInterface) => (
+        _items.map((data: LeaderboarItemsInterface) => (
           <li className={styles.card__container} key={data.userID}>
               <section className={styles.card__lef}>
                 <p className={styles.cardTitle}>{data.topRank}</p>
