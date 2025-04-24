@@ -1,51 +1,118 @@
 'use client'
-import api from "@/services/api"
-import { ReactNode, createContext, useContext, useState, } from "react"
+import apiOrigins from "@/services/api"
+import { ReactNode, createContext, useContext, useEffect, useState, } from "react"
+import { LeaderboardInterface } from "@/interfaces/leaderboard.interface"
 
 interface Props {
     children: ReactNode
+};
+
+interface leaderBoardProviderData {   
+    listLeaderboard: (offSetValue: number) => Promise<void>
+    leaderboard: LeaderboardInterface[]
+    setLeaderboard: React.Dispatch<React.SetStateAction<LeaderboardInterface[]>>
+    firstLeaderboards: () => Promise<void>
+    latestLeaderboards: () => Promise<void>
+    offset: number
 }
 
-interface leaderBoardProviderData {
-    leaderBoard: undefined
-    setLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>
-    fullLeaderBoard: undefined;
-    setFullLeaderBoard: React.Dispatch<React.SetStateAction<undefined>>
-}
+const LeaderBoardContext = createContext<leaderBoardProviderData>({} as leaderBoardProviderData);
+const apiKey = process.env.NEXT_PUBLIC_KEY_API;
 
-const LeaderBoardContext = createContext<leaderBoardProviderData>({} as leaderBoardProviderData)
+export const  LeaderBoardProvider = ({ children }: Props) => {
 
-export const  LeaderBoardProvider = ({children}: Props) => {
+    const [listLeaderboardData, setListLeaderboardData] = useState<boolean>(false);
+    const [leaderboard, setLeaderboard] = useState<LeaderboardInterface[]>([]);
+    const [offset, setOffset] = useState<number>(0);
 
-    const apiKey = process.env.NEXT_PUBLIC_KEY_API
-
-    const [fullLeaderBoard, setFullLeaderBoard] = useState()
-    const [leaderBoard, setLeaderBoard] = useState()
+    useEffect(() => {
+        listLeaderboard();
+    }, []);
     
-    const getFullLeaderBoard = async () => {
-        try {
+    const listLeaderboard = async () => {
 
-            const response = await api.get('origins/v2/leaderboards', {
+        try {            
+            if (!listLeaderboardData) {
+                
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': apiKey
+                    }
+                };
+    
+                const response = await apiOrigins.get(`origins/v2/leaderboards`, config);
+                setLeaderboard(response.data)
+                setListLeaderboardData(true);
+            };
+        } catch (error) {
+            console.log(error);
+            setListLeaderboardData(false);
+        }
+    };
+
+    const listPaginatedLeaderboard = async (currentOffset: number) => {
+        try {
+            const config = {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-API-Key': apiKey
-                  }
-            })
-            
-            setFullLeaderBoard(response.data)
-            setLeaderBoard(response.data._items)
-
+                }
+            };
+    
+            const response = await apiOrigins.get(`origins/v2/leaderboards?offset=${currentOffset}`, config);
+    
+            if (response.data) {
+                setLeaderboard([])
+                setListLeaderboardData(false);
+                setLeaderboard((prevLeaderboard) => ({
+                    ...prevLeaderboard,
+                    _items: [...(prevLeaderboard?._items || []), ...response.data._items],
+                    _metadata: response.data._metadata
+                }));
+                setListLeaderboardData(true);
+            }
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            setListLeaderboardData(false);
         }
-    }
+    };
 
+    const firstLeaderboards = async () => {
+        if (offset >= 20) {
+            setOffset((prevOffset) => {
+                const newOffset = prevOffset - 20;                
+                listPaginatedLeaderboard(newOffset);
+                return newOffset;
+            });
+        } else {            
+            listLeaderboard();
+        }
+    };
+
+    const latestLeaderboards = async () => {
+        setOffset((prevOffset) => {
+            const newOffset = prevOffset + 20;
+            listPaginatedLeaderboard(newOffset);
+            return newOffset;
+        });
+    };
+    
+  
     return (
-        <LeaderBoardContext.Provider value={{ 
-            fullLeaderBoard, setFullLeaderBoard,
-            leaderBoard, setLeaderBoard,
-         }}>{children}</LeaderBoardContext.Provider>
+        <LeaderBoardContext.Provider
+            value={{ 
+                leaderboard,
+                setLeaderboard,
+                listLeaderboard,
+                firstLeaderboards,
+                latestLeaderboards,
+                offset,
+            }}
+        >
+            {children}
+        </LeaderBoardContext.Provider>
     )
-}
+};
 
 export const useLeaderBoard = () => useContext(LeaderBoardContext)

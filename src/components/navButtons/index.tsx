@@ -9,12 +9,8 @@ const NavButtons = () => {
 
     return (
         <>
-            <nav className={ styles.nav__container }>
-                <Link href={ '#axies' }>Axies</Link>
-                <Link href={ '#leaderbords' }>Leaderboards</Link>
-                <Link href={ '#guilds' }>Guilds</Link>
-                <Link href={ '#runes' }>Runes</Link>
-                <Link href={ '#runes' }>Ranking</Link>
+            <nav className={ styles.nav__container }>                
+                <Link href={ '#leaderboards' }>Leaderboards</Link>                
             </nav>
             <button 
                 className={ styles.hamburguer__btn__open }

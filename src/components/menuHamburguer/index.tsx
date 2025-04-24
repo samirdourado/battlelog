@@ -16,12 +16,8 @@ const MenuHamburguer = () => {
                 >
                     <MdOutlineMenuOpen />
                 </button>
-                <nav className={ styles.nav__container__mobile }>
-                    <Link href={ '#axies' }>Axies</Link>
-                    <Link href={ '#leaderbords' }>Leaderboards</Link>
-                    <Link href={ '#guilds' }>Guilds</Link>
-                    <Link href={ '#runes' }>Runes</Link>
-                    <Link href={ '#runes' }>Ranking</Link>
+                <nav className={ styles.nav__container__mobile }>                    
+                    <Link href={ '#leaderboards' } onClick={ () => setMobileMenu(false) }>Leaderboards</Link>                    
                 </nav>
             </div>
         </div>
