@@ -1,7 +1,7 @@
 export interface LeaderboardInterface {    
     _etag: string,
-    _items: Array<LeaderboarItemsInterface>,
-    _metadata: Array<LeaderBoardMetaDataInterface>
+    _items: Array<LeaderboarItemsInterface[]>,
+    _metadata: Array<LeaderBoardMetaDataInterface[]>
 }
 
 export interface LeaderboarItemsInterface {
