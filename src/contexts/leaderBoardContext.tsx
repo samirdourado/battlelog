@@ -67,7 +67,8 @@ export const  LeaderBoardProvider = ({ children }: Props) => {
                 setListLeaderboardData(false);
                 setLeaderboard((prevLeaderboard) => ({
                     ...prevLeaderboard,
-                    _items: [...(prevLeaderboard?._items || []), ...response.data._items],
+                    ...prevLeaderboard,
+                    ...response.data,
                     _metadata: response.data._metadata
                 }));
                 setListLeaderboardData(true);
