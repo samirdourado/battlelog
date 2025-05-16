@@ -30,7 +30,6 @@ export const  LeaderBoardProvider = ({ children }: Props) => {
     }, []);
     
     const listLeaderboard = async () => {
-
         try {            
             if (!listLeaderboardData) {
                 

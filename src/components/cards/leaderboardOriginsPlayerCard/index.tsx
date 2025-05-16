@@ -11,6 +11,9 @@ const LeaderboardOriginsPlayerCard = () => {
     _items: LeaderboarItemsInterface[];
   };
 
+  const avatarDefaultUrl = 'https://storage.googleapis.com/origin-production/assets/avatar/11.png';
+  const borderDefaultUrl = 'https://storage.googleapis.com/origin-production/assets/border/0.png';
+
   return (
     <>
       {_items ? (
@@ -26,7 +29,26 @@ const LeaderboardOriginsPlayerCard = () => {
                   <p className={`${styles.cardSubTitle} ${styles.vstar}`}>{data.vstar}</p>
                 </section>
                 <figure className={styles.card__figure}>
-                  
+                  <img 
+                    src={`https://storage.googleapis.com/origin-production/assets/avatar/${data.avatar?.split(';')[0]}.png`} 
+                    className={styles.avatar}
+                    alt="Avatar"
+                    onError={e => {
+                      if (e.currentTarget.src !== avatarDefaultUrl) {
+                        e.currentTarget.src = avatarDefaultUrl;
+                      }
+                    }}
+                  />
+                  <img
+                    src={`https://storage.googleapis.com/origin-production/assets/border/${data.avatar?.split(';')[1]}.png`}
+                    className={styles.border}
+                    alt="Border"
+                    onError={e => {
+                      if (e.currentTarget.src !== borderDefaultUrl) {
+                        e.currentTarget.src = borderDefaultUrl;
+                      }
+                    }}
+                  />
                 </figure>
               </section>
             </li>
