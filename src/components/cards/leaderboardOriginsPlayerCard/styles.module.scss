@@ -55,13 +55,18 @@
     @include cardSubTitle;
 }
 
+.ranking {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
 .vstar {
-    // background-color: $color-brand-2;
     padding: 8px;
     border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 18px;
 }
 
 .card__figure {

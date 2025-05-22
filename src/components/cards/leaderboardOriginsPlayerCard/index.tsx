@@ -5,14 +5,14 @@ import vStarImage from '@/../public/origins_assets/rankings/victory-star.png';
 import Image from "next/image";
 
 const LeaderboardOriginsPlayerCard = () => {
-  const { leaderboard, } = useLeaderBoard();
+  const { leaderboard, rankingImage } = useLeaderBoard();
   const { _items } = leaderboard as unknown as {
     _items: LeaderboarItemsInterface[];
   };
 
   const avatarDefaultUrl = 'https://storage.googleapis.com/origin-production/assets/avatar/11.png';
   const borderDefaultUrl = 'https://storage.googleapis.com/origin-production/assets/border/0.png';
-
+  
   return (
     <>
       {_items ? (
@@ -24,16 +24,26 @@ const LeaderboardOriginsPlayerCard = () => {
               <section className={styles.card__right}>
                 <section className={styles.card__right__body}>
                   <p className={styles.cardName}>{data.name}</p>
-                  <p className={styles.cardSubTitle}>{data.rank}</p>
-                  <p className={`${styles.cardSubTitle} ${styles.vstar}`}>{
-                    <Image
-                      src={vStarImage}
-                      alt="Vstar"
-                      width={15}
-                      height={20}
-                      
-                    />
-                  } {data.vstar}</p>
+                  <p className={`${styles.cardSubTitle} ${styles.ranking}`}>
+                    {
+                      <Image
+                        src={rankingImage(data.rank)}
+                        alt="Rank"
+                        width={38}
+                        height={38}
+                      />
+                    } {data.rank}
+                  </p>
+                  <p className={`${styles.cardSubTitle} ${styles.vstar}`}>
+                    {
+                      <Image
+                        src={vStarImage}
+                        alt="Vstar"
+                        width={15}
+                        height={20}                      
+                      />
+                    } {data.vstar}
+                  </p>
                 </section>
                 <figure className={styles.card__figure}>
                   <img 

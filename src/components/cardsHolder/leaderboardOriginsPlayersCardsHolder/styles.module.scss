@@ -23,17 +23,6 @@
     max-height: 60vh;
     align-items: center;
     overflow-y: scroll;
-    
-    ::-webkit-scrollbar {
-        background-color: $color-brand-2;
-        height: 3px;
-        border-radius: 5px;            
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: $color-brand-1;            
-        height: 3px;
-        border-radius: 5px;
-    }
 };
 
 .container > h2, .container > a {
