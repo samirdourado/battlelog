@@ -2,7 +2,7 @@
 
 .card__container {    
     width: 100%;
-    min-width: 16.875rem;    
+    min-width: 390px;    
     display:flex;
     flex-direction: row;    
     gap: 20px;
@@ -37,14 +37,31 @@
     @include cardTitle;
 }
 
+.cardName {
+    @include cardTitle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    @media (max-width: 750px) {
+        max-width: 210px;
+    };
+    @media (min-width: 751px) {
+        max-width: 500px;
+    };
+}
+
 .cardSubTitle {
     @include cardSubTitle;
 }
 
 .vstar {
-    background-color: $color-brand-2;
+    // background-color: $color-brand-2;
     padding: 8px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .card__figure {

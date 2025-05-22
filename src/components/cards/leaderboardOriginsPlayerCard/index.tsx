@@ -1,6 +1,8 @@
 import styles from "./styles.module.scss";
 import { useLeaderBoard } from "@/contexts/leaderBoardContext";
 import { LeaderboarItemsInterface } from "@/interfaces/leaderboard.interface";
+import vStarImage from '@/../public/origins_assets/rankings/victory-star.png';
+import Image from "next/image";
 
 const LeaderboardOriginsPlayerCard = () => {
   const { leaderboard, } = useLeaderBoard();
@@ -21,9 +23,17 @@ const LeaderboardOriginsPlayerCard = () => {
               </section>
               <section className={styles.card__right}>
                 <section className={styles.card__right__body}>
-                  <p className={styles.cardTitle}>{data.name}</p>
+                  <p className={styles.cardName}>{data.name}</p>
                   <p className={styles.cardSubTitle}>{data.rank}</p>
-                  <p className={`${styles.cardSubTitle} ${styles.vstar}`}>{data.vstar}</p>
+                  <p className={`${styles.cardSubTitle} ${styles.vstar}`}>{
+                    <Image
+                      src={vStarImage}
+                      alt="Vstar"
+                      width={15}
+                      height={20}
+                      
+                    />
+                  } {data.vstar}</p>
                 </section>
                 <figure className={styles.card__figure}>
                   <img 
