@@ -112,19 +112,26 @@ export const  LeaderBoardProvider = ({ children }: Props) => {
 
         const imgRank = rank.toLowerCase();
 
-        const rankImage = {
-            egg,
-            chick,
-            hare,
-            boar,
-            bear,
-            wolf,
-            tiger,
-            dragon,
-            challenger,
-        };
-
-        return rankImage[imgRank];
+        if (imgRank === 'egg') {
+            return egg;
+        } else if (imgRank === 'chick') {
+            return chick;
+        } else if (imgRank === 'hare') {
+            return hare;
+        } else if (imgRank === 'boar') {
+            return boar;
+        } else if (imgRank === 'bear') {
+            return bear;
+        } else if (imgRank === 'wolf') {
+            return wolf;
+        } else if (imgRank === 'tiger') {
+            return tiger;
+        } else if (imgRank === 'dragon') {
+            return dragon;
+        } else if (imgRank === 'challenger') {
+            return challenger;
+        }
+        return null;
     };
     
   
