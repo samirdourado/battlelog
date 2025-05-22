@@ -1,9 +1,6 @@
-import Image from "next/image";
 import styles from "./styles.module.scss";
 import { useLeaderBoard } from "@/contexts/leaderBoardContext";
-import noImage from "/public/origins_assets/noImage.png"
-import noBorder from "/public/origins_assets/noBorder.png"
-import { LeaderBoardMetaDataInterface, LeaderboarItemsInterface } from "@/interfaces/leaderboard.interface";
+import { LeaderboarItemsInterface } from "@/interfaces/leaderboard.interface";
 
 const LeaderboardOriginsPlayerCard = () => {
   const { leaderboard, } = useLeaderBoard();
@@ -60,33 +57,3 @@ const LeaderboardOriginsPlayerCard = () => {
 };
 
 export default LeaderboardOriginsPlayerCard;
-
-
-// {_items ? (
-//   _items.map((data: any) => {
-//     const [avatar, border] = data.avatar.split(';');
-
-//     const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>, defaultSrc: string) => {
-//       e.currentTarget.src = defaultSrc;
-//     };
-
-// {avatar ? (
-//   <img
-//     className={styles.avatar}
-//     src={`https://storage.googleapis.com/origin-production/assets/avatar/${avatar}.png`}
-//     onError={(e) => handleError(e, noImage.src)}
-//     alt="Avatar"
-//   />
-// ) : (
-//   <img className={styles.avatar} src={noImage.src} alt="No Avatar" />
-// )}
-// {border ? (
-//   <img
-//     className={styles.border}
-//     src={`https://storage.googleapis.com/origin-production/assets/border/${border}.png`}
-//     onError={(e) => handleError(e, noBorder.src)}
-//     alt="Border"
-//   />
-// ) : (
-//   <img className={styles.border} src={noBorder.src} alt="No Border" />
-// )}
