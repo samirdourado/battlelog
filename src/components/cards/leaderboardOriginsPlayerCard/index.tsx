@@ -4,21 +4,25 @@ import { LeaderboarItemsInterface } from "@/interfaces/leaderboard.interface";
 import vStarImage from '@/../public/origins_assets/rankings/victory-star.png';
 import Image from "next/image";
 import rankingImage from "@/utils/rankImage";
+import { useBattleLog } from "@/contexts/battleLogContext";
 
 const LeaderboardOriginsPlayerCard = () => {
   const { leaderboard } = useLeaderBoard();
   const { _items } = leaderboard as unknown as {
     _items: LeaderboarItemsInterface[];
   };
+  const { getBattleLogsByUserID } = useBattleLog();
 
   const avatarDefaultUrl = 'https://storage.googleapis.com/origin-production/assets/avatar/11.png';
   const borderDefaultUrl = 'https://storage.googleapis.com/origin-production/assets/border/0.png';
+
+  // console.log("_leaderboard items:", _items);
   
   return (
     <>
       {_items ? (
         _items.map((data: LeaderboarItemsInterface) => (
-          <li className={styles.card__container} key={data.userID} onClick={() => console.log('data', data)}>
+          <li className={styles.card__container} key={data.userID} onClick={() => getBattleLogsByUserID(data)}>
               <section className={styles.card__lef}>
                 <p className={styles.cardTitle}>{data.topRank}</p>
               </section>
