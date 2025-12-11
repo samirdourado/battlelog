@@ -56,14 +56,9 @@
   width: 100%;
   margin: 0 auto;
   list-style: none;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
 }
 
 .player__info > li {
-  // background-color: darkslategrey;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,10 +111,15 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  &:hover {
+    transform: scale(1.01);
+    transition: all 0.2s ease-in-out;
+    background-color: darken($color-gray-1, 5%);
+  }
 }
 
 .playerData, .opponentData, .battleData {
-  // background-color: aliceblue;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -130,7 +130,6 @@
 .playerDataItem {
   width: 25%;
   height: 94px;
-  // background-color: blueviolet;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,9 +140,8 @@
   transform: rotateY(180deg)
 }
 
-.battleData > div  {
-  width: 25%;
-  height: 30px;
+.battleData > div, .battleData > a  {
+  padding: 8px 16px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -171,4 +169,6 @@
   background-color: $color-blue-1;
   color: $color-white;
   text-transform: capitalize;
+  text-decoration: none;
+  cursor: pointer;
 }

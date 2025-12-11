@@ -7,6 +7,7 @@ import { useState } from "react";
 import rankingImage from "@/utils/rankImage";
 import vStarImage from '@/../public/origins_assets/rankings/victory-star.png';
 import { LiaMedalSolid } from "react-icons/lia";
+import Link from "next/link";
 
 export default function BattleLogPage() {
   const { userBattleLog } = useBattleLog();
@@ -20,9 +21,16 @@ export default function BattleLogPage() {
   const [avatarError, setAvatarError] = useState(false);
   const [borderError, setBorderError] = useState(false);
 
-  console.log(userBattleLog.battleLogs)
   const playerGameData = userBattleLog.battleLogs[0]?.gameData;
-
+  const battleLogs = userBattleLog.battleLogs;
+  
+  const lastUsedTeam = playerGameData?.players.find(
+    (player: any) => player.userID === userBattleLog.playerData.userID
+  );
+  
+  const playerALogs = battleLogs.filter((log: any) =>
+    log.gameData.players.filter((player: any) => player.userID === userBattleLog.playerData.userID).length > 0
+  );
 
   return (
     <div className={styles.container}>
@@ -79,34 +87,14 @@ export default function BattleLogPage() {
         </div>
 
         <div className={styles.card__container}>
-          <h2>Battle Log</h2>
+          <h2>Last used team</h2>
 
           <ul className={styles.battlelog__list}>
             <li className={styles.battlelog__item}>
               <div className={styles.playerData}>
                 {
-                  playerGameData?.players[0].team.fighters.map((fighter: any) => (
-                    <div key={fighter.axieID} className={`${styles.playerDataItem} ${styles.flipImage}`}>
-                      <Image
-                        src={`https://axiecdn.axieinfinity.com/axies/${fighter.axieID}/axie/axie-full-transparent.png`}
-                        alt={fighter.name}
-                        width={160}
-                        height={140}
-                      />
-                    </div>
-                  ))
-                }
-              </div>
-
-              <div className={styles.battleData}>
-                <div className={styles.gameMode}>{ playerGameData.gameMode }</div>
-                <div className={playerGameData.winner === 1 ? styles.winner : styles.looser}>{ playerGameData.winner === 1 ? 'Winner' : 'Loser' }</div>
-                <div className={styles.replay}>replay</div>
-              </div>
-
-              <div className={styles.playerData}>
-                {
-                  playerGameData?.players[1].team.fighters.map((fighter: any) => (
+                  
+                  lastUsedTeam.team.fighters.map((fighter: any) => (
                     <div key={fighter.axieID} className={styles.playerDataItem}>
                       <Image
                         src={`https://axiecdn.axieinfinity.com/axies/${fighter.axieID}/axie/axie-full-transparent.png`}
@@ -122,8 +110,60 @@ export default function BattleLogPage() {
             </li>
           </ul>
         </div>
+        <div className={styles.card__container}>
+          <h2>Battle log</h2>
+          <ul className={styles.battlelog__list}>
+              {
+                battleLogs.map((log: any) => (
+                  <li key={log._etag} className={styles.battlelog__item}>
+                    <div className={styles.playerData}>
+                    {
+                      log.gameData?.players.find((player: any) => player.userID === userBattleLog.playerData.userID).team.fighters.map((fighter: any) => (
+                        <div key={fighter.axieID} className={`${styles.playerDataItem} ${styles.flipImage}`}>
+                          <Image
+                            src={`https://axiecdn.axieinfinity.com/axies/${fighter.axieID}/axie/axie-full-transparent.png`}
+                            alt={fighter.name}
+                            width={160}
+                            height={140}
+                          />
+                        </div>
+                      ))
+                    }
+                    </div>
 
-      {/* <pre>{JSON.stringify(userBattleLog, null, 2)}</pre> */}
+                    <div className={styles.battleData}>
+                      <div className={styles.gameMode}>{ log.gameData.gameMode }</div>
+                      <div className={log.gameData.players.findIndex((p: any) => p.userID === userBattleLog.playerData.userID) === log.gameData.winner ? styles.winner : styles.looser}>
+                        { log.gameData.players.findIndex((p: any) => p.userID === userBattleLog.playerData.userID) === log.gameData.winner ? 'Winner' : 'Loser' }
+                      </div>
+                      <Link
+                        href={`axie-origin://?f=rpl&q=${log.gameData.uuid}&userId=${userBattleLog.playerData.userID}`}
+                        className={styles.replay}
+                        target="_blank"
+                      >
+                        Replay
+                      </Link>
+                    </div>
+                    
+                    <div className={styles.playerData}>
+                      {
+                        log.gameData?.players.find((player: any) => player.userID !== userBattleLog.playerData.userID).team.fighters.map((fighter: any) => (
+                          <div key={fighter.axieID} className={styles.playerDataItem}>
+                            <Image
+                              src={`https://axiecdn.axieinfinity.com/axies/${fighter.axieID}/axie/axie-full-transparent.png`}
+                              alt={fighter.name}
+                              width={160}
+                              height={140}
+                            />
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </li>
+                ))
+              }
+          </ul>
+        </div>
     </div>
   );
 }
