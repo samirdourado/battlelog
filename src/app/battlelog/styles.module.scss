@@ -1,0 +1,174 @@
+@use 'abstracts' as *;
+
+.container {
+  padding: 0 10px;
+}
+
+.card__container {    
+  width: 100%;
+  min-width: 320px;
+  max-width: 1280px;
+  margin: 10px auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-gray-1;
+  border-radius: 8px;
+  padding: 10px;
+  position: relative;
+  top: 80px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.5);
+};
+
+.card__figure {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  max-width: 150px;
+  height: 150px;
+  max-height: 150px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: -75px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  height: 100px;
+  width: 100px;
+  max-height: 100px;  
+  max-width: 100px;
+}
+  
+.border {    
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  max-height: 150px;  
+  max-width: 150px;
+}
+
+.player__info {
+  width: 100%;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.player__info > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player__info > li > article {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;  
+}
+
+.cardSubTitle {
+  @include cardSubTitle;
+}
+
+.ranking {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.vstar {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.battlelog__list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card__container > h2 {
+  margin-bottom: 20px;
+}
+
+.battlelog__item {
+  border: 2px solid $color-gray-2;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &:hover {
+    transform: scale(1.01);
+    transition: all 0.2s ease-in-out;
+    background-color: darken($color-gray-1, 5%);
+  }
+}
+
+.playerData, .opponentData, .battleData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.playerDataItem {
+  width: 25%;
+  height: 94px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+.flipImage {
+  transform: rotateY(180deg)
+}
+
+.battleData > div, .battleData > a  {
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameMode {
+  background-color: $color-brand-1;
+  color: $color-white;
+  text-transform: capitalize;
+}
+
+.winner {
+  background-color: $color-green-1;
+  color: $color-white;
+}
+
+.looser {
+  background-color: $color-danger;
+  color: $color-white;
+  text-transform: capitalize;
+}
+
+.replay {
+  background-color: $color-blue-1;
+  color: $color-white;
+  text-transform: capitalize;
+  text-decoration: none;
+  cursor: pointer;
+}

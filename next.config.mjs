@@ -20,6 +20,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'axiecdn.axieinfinity.com',
+                port: '',
+                pathname: '/**',
+            },
         ],
     },
 };
