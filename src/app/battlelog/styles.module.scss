@@ -125,6 +125,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
+  @media (min-width: 451px) {
+    justify-content: space-around;
+  };
 }
 
 .playerDataItem {
