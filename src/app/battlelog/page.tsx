@@ -27,10 +27,6 @@ export default function BattleLogPage() {
   const lastUsedTeam = playerGameData?.players.find(
     (player: any) => player.userID === userBattleLog.playerData.userID
   );
-  
-  const playerALogs = battleLogs.filter((log: any) =>
-    log.gameData.players.filter((player: any) => player.userID === userBattleLog.playerData.userID).length > 0
-  );
 
   return (
     <div className={styles.container}>
